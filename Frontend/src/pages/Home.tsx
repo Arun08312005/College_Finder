@@ -288,7 +288,7 @@ const Home = () => {
       {/* Education Level Guide */}
       <section className="education-levels">
         <div className="container">
-          <h2>Find Help Based on Your Education Level</h2>
+          <h2 className="text-center text-4xl my-5">Find Help Based on Your Education Level</h2>
           <div className="levels-grid">
             <div className="level-card">
               <div className="level-icon">
@@ -364,7 +364,7 @@ const Home = () => {
       {/* Featured Programs */}
       <section id="featured" className="featured">
         <div className="container">
-          <h2>Popular Career Paths</h2>
+          <h2 className="text-center text-4xl my-5">Popular Career Paths</h2>
           <p className="section-subtitle">Explore these common fields of study and what they can offer</p>
 
           <div className="featured-grid">
@@ -417,7 +417,7 @@ const Home = () => {
       {/* College Basics Section */}
       <section className="college-basics">
         <div className="container">
-          <h2>College Basics Explained</h2>
+          <h2 className="text-center text-4xl my-5">College Basics Explained</h2>
           <div className="basics-grid">
             <div className="basic-card">
               <h3>What is a Bachelor's Degree?</h3>
@@ -530,7 +530,7 @@ const Home = () => {
       {/* Next Steps Section */}
       <section className="next-steps">
         <div className="container">
-          <h2>Ready to Take the Next Step?</h2>
+          <h2 className="text-center text-4xl my-5">Ready to Take the Next Step?</h2>
           <div className="steps-grid">
             <div className="step-card">
               <div className="step-number">1</div>

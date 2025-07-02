@@ -152,7 +152,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     setIsSubmitting(true);
 
     try {
-    const apiUrl = `${process.env.REACT_APP_API_URL || 'http://localhost:3001'}/api/contact`;
+    const apiUrl = 'http://localhost:3001/api/contact';
     console.log("Attempting to call:", apiUrl); // Debug API URL
     
     const response = await fetch(apiUrl, {

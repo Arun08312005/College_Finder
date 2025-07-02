@@ -14,7 +14,7 @@ connectDB();
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -24,6 +24,11 @@ app.use(morgan('dev'));
 
 // Routes
 app.use('/', contactRoutes);
+
+app.post("/api/contact", (req, res) => {
+  console.log(req.body);
+  res.json({ message: "Form submitted successfully!" });
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
