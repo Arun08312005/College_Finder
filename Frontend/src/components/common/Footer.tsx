@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { Mail, Phone } from 'lucide-react'; // or your icon library of choice
 import {
   MapPin,
@@ -69,7 +70,7 @@ const Footer: React.FC = () => {
             href={whatsappUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-green-600 hover:text-green-800 ml-2"
+            className="text-white-600 hover:text-green-800 ml-2"
           >
                       <span>{phoneNumber}</span>
           </a>
@@ -87,12 +88,12 @@ const Footer: React.FC = () => {
                 Register to get updates on colleges, scholarships, and more.
               </p>
               <form className="flex">
-                <a href="/contact"><button
+                <Link to='/contact'><button
                   type="submit"
                   className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r"
                 >
                   Register
-                </button></a>
+                </button></Link>
               </form>
             </div>
           </div>
