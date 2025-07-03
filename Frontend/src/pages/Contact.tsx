@@ -232,16 +232,17 @@ const handleSubmit = async (e: React.FormEvent) => {
       {/* Contact Hero */}
       <section className="page-hero contact-hero">
         <div className="hero-content" data-aos="fade-up">
-          <h1 className="text-primary">Contact Us For Your Career Guidance</h1>
+          <h1 className="text-4xl md:text-5xl font-playfair text-center text-primary-900 mb-6">Contact Us For Your Career Guidance</h1>
           <p>Our expert counselors are ready to help you find the perfect college</p>
           <div className="cta-buttons">
-            <a href="tel:+916380539537" className="btn btn-primary">
-              <i className="fas fa-phone-alt"></i> Call Now
-            </a>
-            <a href="#contact-form" className="btn btn-secondary">
-              <i className="fas fa-envelope"></i> Send Message
-            </a>
-          </div>
+  <a href="tel:+916380539537" className="btn btn-custom">
+    <i className="fas fa-phone"></i> Call Now
+  </a>
+  <a href="#contact-form" className="btn btn-custom">
+    <i className="fas fa-envelope"></i> Send Message
+  </a>
+</div>
+
         </div>
       </section>
 
@@ -572,10 +573,10 @@ const handleSubmit = async (e: React.FormEvent) => {
           <h2>Ready to Start Your College Journey?</h2>
           <p>Contact us today for personalized guidance and support</p>
           <div className="cta-buttons">
-            <a href="tel:+916380539537" className="btn btn-primary btn-lg">
-              <i className="fas fa-phone-alt"></i> Call Now
+            <a href="tel:+916380539537" className="btn btn-primary btn-custom">
+              <i className="fas fa-phone"></i> Call Now
             </a>
-            <a href="#contact-form" className="btn btn-secondary btn-lg">
+            <a href="#contact-form" className="btn btn-secondary btn-custom">
               <i className="fas fa-envelope"></i> Send Message
             </a>
           </div>

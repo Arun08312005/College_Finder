@@ -516,3 +516,26 @@
     font-size: 1.7rem;
   }
 }
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0px 0px 0px;
+  gap: 1rem; /* Adjust as needed */
+}
+
+.cta-buttons .btn-custom {
+  background-color: #007bff; /* Bootstrap primary blue */
+  font-size: 1.3rem;
+  padding: 12px 20px;
+  color: white;
+  hover: black; /* Darker shade of blue on hover */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-buttons .btn-custom:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}

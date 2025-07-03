@@ -1,4 +1,4 @@
-/* Combined CSS with Indian Educational Theme and Enhanced Transitions */
+/* Combined CSS with Indian Educational Theme and Enhanced Transitions
 :root {
   --primary-color: #2c3e50;
   --secondary-color: #1e88e5;
@@ -288,8 +288,7 @@ section {
 }
 
 .learn-more {
-  display: inline-block;
-  color: var(--primary-color);
+  color: white;
   font-weight: bold;
   margin-top: 1rem;
   transition: var(--transition);
@@ -297,7 +296,7 @@ section {
 }
 
 .learn-more:hover {
-  color: var(--accent-color);
+  color: black;
   transform: translateX(5px);
 }
 
@@ -715,8 +714,7 @@ section {
 }
 
 .story-card:hover .achievements span {
-  background-color: var(--primary-color);
-  color: white;
+background: linear-gradient(135deg, #43cea2, #185a9d);  color: white;
   transform: translateY(-3px);
 }
 
@@ -1363,4 +1361,195 @@ footer {
   .circle-number {
     font-size: 20px;
   }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation for buttons */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Delays for staggered animations */
+.level-card:nth-child(2),
+.featured-card:nth-child(2),
+.basic-card:nth-child(2),
+.step-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.level-card:nth-child(3),
+.featured-card:nth-child(3),
+.basic-card:nth-child(3),
+.step-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Contact form animation */
+.contact-form.show {
+  animation: none;
+}
+
+.contact-form.show.scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+ 
+/* Animation Classes */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  opacity: 0;
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  opacity: 0;
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  opacity: 0;
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Delays */
+[data-animate-delay="100"] {
+  animation-delay: 100ms;
+}
+
+[data-animate-delay="200"] {
+  animation-delay: 200ms;
+}
+
+[data-animate-delay="300"] {
+  animation-delay: 300ms;
+}
+
+[data-animate-delay="400"] {
+  animation-delay: 400ms;
+}
+
+[data-animate-delay="500"] {
+  animation-delay: 500ms;
+}
+
+[data-animate-delay="600"] {
+  animation-delay: 600ms;
 }

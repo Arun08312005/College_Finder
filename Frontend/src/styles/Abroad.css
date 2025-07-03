@@ -290,6 +290,30 @@ p {
   transform: translate(-50%, -50%);
 }
 
+.us-flag {
+  background: linear-gradient(to bottom, 
+    #B22234 0%, #B22234 40%, 
+    #FFFFFF 40%, #FFFFFF 60%, 
+    #B22234 60%, #B22234 100%);
+  position: relative;
+}
+
+.us-flag::before {
+  content: '★';
+  position: absolute;
+  color: #3C3B6E;
+  font-size: 8px;
+  top: 20%;
+  left: 20%;
+}
+
+.de-flag {
+  background: linear-gradient(to bottom, 
+    #000000 0%, #000000 33%, 
+    #DD0000 33%, #DD0000 66%, 
+    #FFCE00 66%, #FFCE00 100%);
+}
+
 .destination-content {
   padding: 1.5rem;
   flex: 1;

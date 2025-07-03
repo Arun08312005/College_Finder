@@ -11,8 +11,8 @@ const About: React.FC = () => {
     <>
       {/* About Hero */}
       <section className="page-hero about-hero">
-        <div className="hero-content" data-aos="fade-up">
-          <h1>About College Finder</h1>
+        <div className="hero-content " data-aos="fade-up">
+          <h1 className='text-4xl font-inter font-semibold text-primary-900 tracking-wide'>About Ourself for your Guideance</h1>
           <p>Your trusted partner in educational excellence since 2010</p>
         </div>
       </section>

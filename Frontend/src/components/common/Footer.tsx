@@ -1,52 +1,103 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Mail, Phone } from 'lucide-react'; // or your icon library of choice
+import {
+  MapPin,
+  Clock,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
+
 import './Footer.css';
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-
+   const phoneNumber = "+916380539537";
+  const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}`;
+  const email = "technofoundation100@gmail.com";
   return (
-    <footer>
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/college">College Studies</Link></li>
-              <li><Link to="/abroad">Abroad Studies</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h3>Contact Info</h3>
-            <ul>
-              <li><i className="fas fa-map-marker-alt"></i> 123 Education, Dharmapuri (தர்மபுரி)</li>
-              <li><i className="fas fa-phone"></i> <a href="tel:+91 63805 39537">+91 63805 39537</a></li>
-              <li><i className="fas fa-envelope"></i> <a href="mailto:technofoundation100@gmail.com">technofoundation100@gmail.com</a></li>
-              <li><i className="fas fa-clock"></i> Mon-Sun: 9AM - 6PM</li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h3>Connect With Us</h3>
-            <div className="social-links">
-              <a href="#"><i className="fab fa-facebook"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-linkedin"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="https://wa.me/+916380539537"><i className="fab fa-whatsapp"></i></a>
+    <footer className="bg-gray-900 text-white py-12 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">CollegeFinder</h3>
+              <p className="mb-4">
+                Helping students find their perfect educational path since 2010.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Facebook size={20} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Twitter size={20} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Linkedin size={20} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Instagram size={20} />
+                </a>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
+                <li><a href="/about" className="text-gray-400 hover:text-white">About Us</a></li>
+                <li><a href="/college" className="text-gray-400 hover:text-white">College Studies</a></li>
+                <li><a href="/abroad" className="text-gray-400 hover:text-white">Abroad Studies</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact Info</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <MapPin className="mr-2 mt-1 flex-shrink-0" size={16} />
+                  <span>123 Education St, Learning City, TN 600001</span>
+                </li>
+                <li className="flex items-center">
+                  <Mail className="mr-2" size={16} />
+        <a href={`mailto:${email}`} className="hover:underline">
+          {email}
+        </a>
+        </li>
+                <li className="flex items-center">
+        <Phone className="mr-2" size={16} />
+        <div className="flex items-center space-x-2 col-white">
+          <a 
+            href={whatsappUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-green-600 hover:text-green-800 ml-2"
+          >
+                      <span>{phoneNumber}</span>
+          </a>
+        </div>
+      </li>
+                <li className="flex items-center">
+                  <Clock className="mr-2" size={16} />
+                  <span>Mon-Fri: 9AM - 6PM</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Register</h4>
+              <p className="mb-4 text-gray-400">
+                Register to get updates on colleges, scholarships, and more.
+              </p>
+              <form className="flex">
+                <a href="/contact"><button
+                  type="submit"
+                  className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r"
+                >
+                  Register
+                </button></a>
+              </form>
             </div>
           </div>
-          <div className="footer-section">
-            <h3>Register For Your College</h3>
-            <form className="newsletter-form">
-              <Link to="../Contact"><button type="button">Register</button></Link>
-            </form>
-          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
   );
 };
 
