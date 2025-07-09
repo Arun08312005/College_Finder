@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useInView } from 'react-intersection-observer';
 import {
   GraduationCap,
   Users,
-  TrendingUp,
   Laptop,
   Heart,
   BarChart3,
@@ -11,33 +11,28 @@ import {
   Globe,
   Phone,
   MessageCircle,
-  X,
   ChevronRight,
-  Star,
-  Award,
-  Target,
   Briefcase,
-  MapPin,
-  Mail,
-  Clock,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
 } from "lucide-react";
 import "../styles/Home.css";
-import { BiColor } from "react-icons/bi";
+
 
 const Home = () => {
   const [isNavActive, setIsNavActive] = useState(false);
 
-  // Animation states
-  const [fadeIn, setFadeIn] = useState(false);
-  const [slideUp, setSlideUp] = useState(false);
-  const [scaleIn, setScaleIn] = useState(false);
+  // Intersection Observer hooks for scroll animations
+  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [educationRef, educationInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [recruitersRef, recruitersInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [featuredRef, featuredInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [basicsRef, basicsInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [facilitiesRef, facilitiesInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [storiesRef, storiesInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [infographicRef, infographicInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [stepsRef, stepsInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [footerRef, footerInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   useEffect(() => {
-    // Navbar scroll effect
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar");
       if (window.scrollY > 100) {
@@ -46,11 +41,6 @@ const Home = () => {
         navbar?.classList.remove("scrolled");
       }
     };
-
-    // Animation triggers
-    setFadeIn(true);
-    setTimeout(() => setSlideUp(true), 300);
-    setTimeout(() => setScaleIn(true), 600);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -65,11 +55,7 @@ const Home = () => {
     const formattedNumber = rawNumber.replace(/\D/g, "");
     const telLink = `tel:${formattedNumber}`;
 
-    if (
-      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
+    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       window.location.href = telLink;
     } else {
       alert(`Call us at: +91 ${formattedNumber}`);
@@ -81,9 +67,9 @@ const Home = () => {
   };
 
   return (
-    <div className={`home-container ${fadeIn ? "fade-in" : ""}`}>
-      {/* Floating Buttons with animation */}
-      <div className={`floating-buttons ${slideUp ? "slide-up" : ""}`}>
+    <div className="home-container">
+      {/* Floating Buttons */}
+      <div className="floating-buttons slide-up">
         <button onClick={handleWhatsAppClick} className="whatsapp-button pulse">
           <MessageCircle size={24} />
           <span className="whatsapp-text">Contact Us</span>
@@ -95,49 +81,39 @@ const Home = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`navbar ${slideUp ? "slide-up" : ""}`}>
+      <nav className="navbar slide-up">
         <div className="logo">
-          <h1>
-            College<span>Finder</span>
-          </h1>
+          <h1>College<span>Finder</span></h1>
         </div>
         <div className={`nav-links ${isNavActive ? "active" : ""}`}>
-          <a href="/" className="active">
-            Home
-          </a>
+          <a href="/" className="active">Home</a>
           <a href="/about">About Us</a>
           <a href="/college">College Studies</a>
           <a href="/abroad">Abroad Studies</a>
           <a href="/contact">Contact</a>
         </div>
-        <div
-          className={`hamburger ${isNavActive ? "active" : ""}`}
-          onClick={toggleMobileNav}
-        >
+        <div className={`hamburger ${isNavActive ? "active" : ""}`} onClick={toggleMobileNav}>
           <span></span>
           <span></span>
           <span></span>
         </div>
       </nav>
 
-      {/* Hero Section with animations */}
-      <section id="home" className={`hero ${fadeIn ? "fade-in" : ""}`}>
+      {/* Hero Section */}
+      <section 
+        id="home" 
+        className={`hero ${heroInView ? "fade-in" : ""}`}
+        ref={heroRef}
+      >
         <div className="hero-content">
-          <h1
-            className={`${slideUp ? "slide-up" : "" }` }
-            style={{ color: "#1e88e5" }}
-          >
-            Find Your Perfect College
-          </h1>
-          <h2 className={`${slideUp ? "slide-up" : ""}`}>
-            Guidelines Provided by College Finder
-          </h2>
-          <p className={`${slideUp ? "slide-up" : ""}`}>
+          <h1 style={{ color: "#1e88e5" }}>Find Your Perfect College</h1>
+          <h2>Guidelines Provided by College Finder</h2>
+          <p>
             Whether you're in high school, just graduated, or considering a
             career change, we'll help you find the right path
           </p>
 
-          <div className={`hero-stats ${scaleIn ? "scale-in" : ""}`}>
+          <div className="hero-stats">
             <div className="stat-item">
               <span className="stat-number">1000+</span>
               <span className="stat-label">Partner Universities</span>
@@ -151,22 +127,19 @@ const Home = () => {
               <span className="stat-label">Success Rate</span>
             </div>
           </div>
-          <a href="/college" className={`cta-button pulse`}>
-            College Finder
-          </a>
+          <a href="/college" className="cta-button pulse">College Finder</a>
         </div>
-      </section>
+      </section><br />
 
-      {/* Education Level Guide with animations */}
-      <section className={`education-levels ${fadeIn ? "fade-in" : ""}`}>
+      {/* Education Level Guide */}
+      <section 
+        className={`education-levels ${educationInView ? "fade-in" : ""}`}
+        ref={educationRef}
+      >
         <div className="container">
-          <h2
-            className={`text-center text-4xl my-5 ${slideUp ? "slide-up" : ""}`}
-          >
-            Find Help Based on Your Education Level
-          </h2>
+          <h2 className="text-center text-4xl my-5">Find Help Based on Your Education Level</h2>
           <div className="levels-grid">
-            <div className={`level-card ${slideUp ? "slide-up" : ""}`}>
+            <div className="level-card">
               <div className="level-icon">
                 <GraduationCap size={48} />
               </div>
@@ -178,15 +151,10 @@ const Home = () => {
                 <li>Understand application timelines</li>
               </ul>
               <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-300">
-                <a href="/contact" className="learn-more">
-                  Get Prepared
-                </a>
+                <a href="/contact" className="learn-more">Get Prepared</a>
               </button>
             </div>
-            <div
-              className={`level-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.2s" }}
-            >
+            <div className="level-card">
               <div className="level-icon">
                 <Users size={48} />
               </div>
@@ -197,14 +165,11 @@ const Home = () => {
                 <li>Application process</li>
                 <li>Scholarship opportunities</li>
               </ul>
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-300"><a href="/contact" className="learn-more">
-                Start Applying
-              </a></button>
+              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-300">
+                <a href="/contact" className="learn-more">Start Applying</a>
+              </button>
             </div>
-            <div
-              className={`level-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.4s" }}
-            >
+            <div className="level-card">
               <div className="level-icon">
                 <Briefcase size={48} />
               </div>
@@ -216,44 +181,33 @@ const Home = () => {
                 <li>Navigate financial aid</li>
               </ul>
               <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-300">
-              <a href="/contact" className="learn-more">
-                Explore Options
-              </a></button>
+                <a href="/contact" className="learn-more">Explore Options</a>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Top Recruiters Section with animations */}
-      <section className={`top-recruiters ${fadeIn ? "fade-in" : ""}`}>
+      {/* Top Recruiters Section */}
+      <section 
+        className={`top-recruiters ${recruitersInView ? "fade-in" : ""}`}
+        ref={recruitersRef}
+      >
         <div className="container">
-          <h2 className={`${slideUp ? "slide-up" : ""}`}>TOP RECRUITERS</h2>
-          <p className={`subtitle ${slideUp ? "slide-up" : ""}`}>
+          <h2>TOP RECRUITERS</h2>
+          <p className="subtitle">
             Leading Companies Hiring Our Graduates Across Diverse Industries
           </p>
 
-          <div className={`recruiters-grid ${scaleIn ? "scale-in" : ""}`}>
+          <div className="recruiters-grid">
             {[
-              "Google",
-              "Microsoft",
-              "Amazon",
-              "Palo Alto Networks",
-              "ServiceNow",
-              "Autodesk",
-              "Bosch",
-              "BP",
-              "Cognizant",
-              "Deloitte",
-              "TCS",
-              "Infosys",
-              "JPMorgan",
-              "Aditya Birla",
+              "Google", "Microsoft", "Amazon", "Palo Alto Networks", "ServiceNow",
+              "Autodesk", "Bosch", "BP", "Cognizant", "Deloitte", "TCS", "Infosys",
+              "JPMorgan", "Aditya Birla"
             ].map((company, index) => (
               <div key={index} className="recruiter-card">
                 <img
-                  src={`https://logo.clearbit.com/${company
-                    .toLowerCase()
-                    .replace(/\s+/g, "")}.com`}
+                  src={`https://logo.clearbit.com/${company.toLowerCase().replace(/\s+/g, "")}.com`}
                   alt={company}
                   className="recruiter-logo"
                 />
@@ -262,29 +216,24 @@ const Home = () => {
             ))}
           </div>
 
-          <a
-            href="#application"
-            className={`apply-now-btn ${scaleIn ? "scale-in" : ""} pulse`}
-          >
-            Apply Now
-          </a>
+          <a href="#application" className="apply-now-btn pulse">Apply Now</a>
         </div>
       </section>
 
-      {/* Featured Programs with animations */}
-      <section id="featured" className={`featured ${fadeIn ? "fade-in" : ""}`}>
+      {/* Featured Programs */}
+      <section 
+        id="featured" 
+        className={`featured ${featuredInView ? "fade-in" : ""}`}
+        ref={featuredRef}
+      >
         <div className="container">
-          <h2
-            className={`text-center text-4xl my-5 ${slideUp ? "slide-up" : ""}`}
-          >
-            Popular Career Paths
-          </h2>
-          <p className={`section-subtitle ${slideUp ? "slide-up" : ""}`}>
+          <h2 className="text-center text-4xl my-5">Popular Career Paths</h2>
+          <p className="section-subtitle">
             Explore these common fields of study and what they can offer
           </p>
 
           <div className="featured-grid">
-            <div className={`featured-card ${slideUp ? "slide-up" : ""}`}>
+            <div className="featured-card">
               <div className="card-icon">
                 <Laptop size={40} />
               </div>
@@ -302,14 +251,9 @@ const Home = () => {
                   scientist, IT specialist
                 </p>
               </div>
-              <a href="#" className="learn-more">
-                Explore This Path
-              </a>
+              <a href="#" className="learn-more">Explore This Path</a>
             </div>
-            <div
-              className={`featured-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.2s" }}
-            >
+            <div className="featured-card">
               <div className="card-icon">
                 <Heart size={40} />
               </div>
@@ -327,14 +271,9 @@ const Home = () => {
                   researcher
                 </p>
               </div>
-              <a href="#" className="learn-more">
-                Explore This Path
-              </a>
+              <a href="#" className="learn-more">Explore This Path</a>
             </div>
-            <div
-              className={`featured-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.4s" }}
-            >
+            <div className="featured-card">
               <div className="card-icon">
                 <BarChart3 size={40} />
               </div>
@@ -350,37 +289,33 @@ const Home = () => {
                   specialist, entrepreneur
                 </p>
               </div>
-              <a href="#" className="learn-more">
-                Explore This Path
-              </a>
+              <a href="#" className="learn-more">Explore This Path</a>
             </div>
           </div><br />
 
-          <div className={`explanation-box ${scaleIn ? "scale-in" : ""}`}>
-<h3 className="text-3xl font-semibold text-gray-800">Not sure what to study?</h3>
+          <div className="explanation-box">
+            <h3 className="text-3xl font-semibold text-gray-800">Not sure what to study?</h3>
             <p>
               Many students don't know their career path when they start. That's
               okay! We offer career assessment tests and counseling to help you
               discover fields that match your interests and skills.
             </p><br />
             <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-300">
-            <a href="/contact" className="learn-more pulse">
-              Take Our Career Quiz
-            </a></button>
+              <a href="/contact" className="learn-more pulse">Take Our Career Quiz</a>
+            </button>
           </div>
         </div>
       </section>
 
-      {/* College Basics Section with animations */}
-      <section className={`college-basics ${fadeIn ? "fade-in" : ""}`}>
+      {/* College Basics Section */}
+      <section 
+        className={`college-basics ${basicsInView ? "fade-in" : ""}`}
+        ref={basicsRef}
+      >
         <div className="container">
-          <h2
-            className={`text-center text-4xl my-5 ${slideUp ? "slide-up" : ""}`}
-          >
-            College Basics Explained
-          </h2>
+          <h2 className="text-center text-4xl my-5">College Basics Explained</h2>
           <div className="basics-grid">
-            <div className={`basic-card ${slideUp ? "slide-up" : ""}`}>
+            <div className="basic-card">
               <h3>What is a Bachelor's Degree?</h3>
               <p>
                 A 4-year program where you study one main subject (your "major")
@@ -388,20 +323,14 @@ const Home = () => {
                 pursue after high school.
               </p>
             </div>
-            <div
-              className={`basic-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.2s" }}
-            >
+            <div className="basic-card">
               <h3>What are College Credits?</h3>
               <p>
                 Points you earn by completing courses. You need a certain number
                 to graduate. Most courses are worth 3-4 credits.
               </p>
             </div>
-            <div
-              className={`basic-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.4s" }}
-            >
+            <div className="basic-card">
               <h3>What is Financial Aid?</h3>
               <p>
                 Money to help pay for college, including scholarships (free
@@ -411,27 +340,24 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section><br />
 
-      {/* Campus Facilities Section with animations */}
-      <section className={`campus-facilities ${fadeIn ? "fade-in" : ""}`}>
+      {/* Campus Facilities Section */}
+      <section 
+        className={`campus-facilities ${facilitiesInView ? "fade-in" : ""}`}
+        ref={facilitiesRef}
+      >
         <div className="container">
-          <h2 className={`${slideUp ? "slide-up" : ""}`}>
-            WHERE POSSIBILITIES ARE INFINITE
-          </h2>
-          <p className={`subtitle ${slideUp ? "slide-up" : ""}`}>
+          <h2>WHERE POSSIBILITIES ARE INFINITE</h2>
+          <p className="subtitle">
             From tech labs to wellness centers, we have it all
           </p>
 
-          <div className={`facilities-grid ${scaleIn ? "scale-in" : ""}`}>
+          <div className="facilities-grid">
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>IMAC LAB</h3>
                 <p>
@@ -441,13 +367,9 @@ const Home = () => {
               </div>
             </div>
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>SPACE LAB</h3>
                 <p>
@@ -457,13 +379,9 @@ const Home = () => {
               </div>
             </div>
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>CENTRAL INSTRUMENTATION FACILITY</h3>
                 <p>
@@ -473,13 +391,9 @@ const Home = () => {
               </div>
             </div>
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>UNI MALL</h3>
                 <p>
@@ -489,13 +403,9 @@ const Home = () => {
               </div>
             </div>
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>WELLNESS CENTER</h3>
                 <p>
@@ -505,13 +415,9 @@ const Home = () => {
               </div>
             </div>
             <div className="facility-card">
-              <div
-                className="facility-image"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')",
-                }}
-              ></div>
+              <div className="facility-image" style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"
+              }}></div>
               <div className="facility-content">
                 <h3>INNOVATION HUB</h3>
                 <p>
@@ -525,35 +431,29 @@ const Home = () => {
 
           <div className="button-container">
             <Link to="/contact">
-              <a href="/contact" className={`cta-button pulse`}>
-                Apply Now
-              </a>
+              <a href="/contact" className="cta-button pulse">Apply Now</a>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Success Stories with animations */}
-      <section className={`success-stories ${fadeIn ? "fade-in" : ""}`}>
+      {/* Success Stories */}
+      <section 
+        className={`success-stories ${storiesInView ? "fade-in" : ""}`}
+        ref={storiesRef}
+      >
         <div className="container">
-          <h2 className={`${slideUp ? "slide-up" : ""}`}>
-            Student Experiences
-          </h2>
-          <p className={`section-subtitle ${slideUp ? "slide-up" : ""}`}>
+          <h2>Student Experiences</h2>
+          <p className="section-subtitle">
             Hear from students who were once in your position
           </p>
 
-          <div className={`success-slider ${scaleIn ? "scale-in" : ""}`}>
+          <div className="success-slider">
             <div className="story-card">
-              <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600"
-                alt="Sarah Johnson"
-              />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" alt="Sarah Johnson" />
               <div className="story-content">
                 <h3>Sarah Johnson</h3>
-                <p className="university">
-                  Started at community college, transferred to University
-                </p>
+                <p className="university">Started at community college, transferred to University</p>
                 <p className="testimony">
                   "I wasn't sure I could afford college. CollegeFinder helped me
                   find scholarships and a transfer path that saved me
@@ -566,17 +466,11 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Added Story 1 */}
             <div className="story-card">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600"
-                alt="Michael Chen"
-              />
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600" alt="Michael Chen" />
               <div className="story-content">
                 <h3>Michael Chen</h3>
-                <p className="university">
-                  International Student at State University
-                </p>
+                <p className="university">International Student at State University</p>
                 <p className="testimony">
                   "Navigating the U.S. education system was overwhelming.
                   CollegeFinder's advisors helped me with everything from visas
@@ -589,17 +483,11 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Added Story 2 */}
             <div className="story-card">
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600"
-                alt="Emma Rodriguez"
-              />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600" alt="Emma Rodriguez" />
               <div className="story-content">
                 <h3>Emma Rodriguez</h3>
-                <p className="university">
-                  Non-traditional student returning to education
-                </p>
+                <p className="university">Non-traditional student returning to education</p>
                 <p className="testimony">
                   "After 10 years in the workforce, I thought college wasn't for
                   me. CollegeFinder showed me flexible programs that fit my
@@ -615,10 +503,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Infographic Section with animations */}
-      <section className={`infographic-section ${fadeIn ? "fade-in" : ""}`}>
+      {/* Infographic Section */}
+      <section 
+        className={`infographic-section ${infographicInView ? "fade-in" : ""}`}
+        ref={infographicRef}
+      >
         <div className="container">
-          <div className={`circles ${scaleIn ? "scale-in" : ""}`}>
+          <div className="circles">
             <div className="circle">
               <span className="circle-number">10Cr+</span>
               Scholarships Awarded
@@ -643,56 +534,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Next Steps Section with animations */}
-      <section className={`next-steps ${fadeIn ? "fade-in" : ""}`}>
+      {/* Next Steps Section */}
+      <section 
+        className={`next-steps ${stepsInView ? "fade-in" : ""}`}
+        ref={stepsRef}
+      >
         <div className="container">
-          <h2
-            className={`text-center text-4xl my-5 ${slideUp ? "slide-up" : ""}`}
-          >
-            Ready to Take the Next Step?
-          </h2>
+          <h2 className="text-center text-4xl my-5">Ready to Take the Next Step?</h2>
           <div className="steps-grid">
-            <div className={`step-card ${slideUp ? "slide-up" : ""}`}>
+            <div className="step-card">
               <div className="step-number">1</div>
               <h3>Explore Options</h3>
               <p>Browse colleges and programs to see what interests you</p>
-              <a href="/college" className="step-button pulse">
-                Browse Colleges
-              </a>
+              <a href="/college" className="step-button pulse">Browse Colleges</a>
             </div>
-            <div
-              className={`step-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.2s" }}
-            >
+            <div className="step-card">
               <div className="step-number">2</div>
               <h3>Get Personalized Advice</h3>
               <p>Answer a few questions to get recommendations</p>
-              <a href="/contact" className="step-button pulse">
-                Start Questionnaire
-              </a>
+              <a href="/contact" className="step-button pulse">Start Questionnaire</a>
             </div>
-            <div
-              className={`step-card ${slideUp ? "slide-up" : ""}`}
-              style={{ transitionDelay: "0.4s" }}
-            >
+            <div className="step-card">
               <div className="step-number">3</div>
               <h3>Talk to an Advisor</h3>
               <p>Schedule a free consultation with our experts</p>
-              <a href="/contact" className="step-button pulse">
-                Book Appointment
-              </a>
+              <a href="/contact" className="step-button pulse">Book Appointment</a>
             </div>
           </div>
         </div>
-      </section>
+      </section><br />
 
-      {/* Footer Top with animations */}
-      <section className={`footer-top ${fadeIn ? "fade-in" : ""}`}>
+      {/* Footer Top */}
+      <section 
+        className={`footer-top ${footerInView ? "fade-in" : ""}`}
+        ref={footerRef}
+      >
         <div className="footer-top-content">
-          <h3 className={`${slideUp ? "slide-up" : ""}`} style={{color: "white"}}>
-            Begin Your Educational Journey Today
-          </h3>
-          <div className={`study-options ${scaleIn ? "scale-in" : ""}`}>
+          <h3 style={{color: "white"}}>Begin Your Educational Journey Today</h3>
+          <div className="study-options">
             <div className="study-option domestic-option">
               <div className="option-icon">
                 <Building2 size={40} />

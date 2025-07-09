@@ -1,4 +1,4 @@
-/* Combined CSS with Indian Educational Theme and Enhanced Transitions
+/* /* Combined CSS with Indian Educational Theme and Enhanced Transitions
 :root {
   --primary-color: #2c3e50;
   --secondary-color: #1e88e5;
@@ -1552,4 +1552,14 @@ footer {
 
 [data-animate-delay="600"] {
   animation-delay: 600ms;
+} 
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add this for the active nav link styling */
+.nav-links a.active {
+  color: #1e88e5;
+  font-weight: bold;
 }
